@@ -52,11 +52,11 @@ class ExrDict(dict):
         rgb = self.get_rgb()
         inst = encode_inst_id.rgb_to_id(rgb)
 
-        # if world.use_nodes is False, Blender will set background as a gray (0.05087609, 0.05087609, 0.05087609)
-        gray_background_mask = (rgb[..., 0] != 0) & (rgb[..., 0] != 1)
-        inst[gray_background_mask] = -1
+        # # if world.use_nodes is False, Blender will set background as a gray (0.05087609, 0.05087609, 0.05087609)
+        # gray_background_mask = (rgb[..., 0] != 0) & (rgb[..., 0] != 1)
+        # inst[gray_background_mask] = -1
 
-        return np.dstack((inst, self.get_rgba()[..., 3]))
+        return inst
 
 class ImageWithAnnotation(dict):
     def __init__(self, image=None, exr=None):
