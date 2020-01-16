@@ -55,8 +55,8 @@ class ExrDict(dict):
         # if world.use_nodes is False, Blender will set background as a gray (0.05087609, 0.05087609, 0.05087609)
         gray_background_mask = (rgb[..., 0] != 0) & (rgb[..., 0] != 1)
         inst[gray_background_mask] = -1
-        return inst
 
+        return np.dstack((inst, self.get_rgba()[..., 3]))
 
 class ImageWithAnnotation(dict):
     def __init__(self, image=None, exr=None):
