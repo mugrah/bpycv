@@ -70,6 +70,8 @@ def render_data(render_image=True, render_annotation=True):
         png_path = path + ".png"
         with set_image_render(), withattr(render, "filepath", png_path):
             print("Render image using:", render.engine)
+            print(png_path)
+            print('************')
             bpy.ops.render.render(write_still=True)
         render_result["image"] = imread(png_path)
         os.remove(png_path)
