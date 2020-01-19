@@ -64,7 +64,8 @@ class set_image_render(StatuRecover):
 
 @undo()
 def render_data(render_image=True, render_annotation=True):
-    path = pathjoin(tempfile.gettempdir(), "render_" + str(time.time()))
+    # path = pathjoin(tempfile.gettempdir(), "render_" + str(time.time()))
+    path = '/tmp/render_test'
     render_result = {}
     if render_image:
         png_path = path + ".png"
@@ -87,6 +88,7 @@ def render_data(render_image=True, render_annotation=True):
             print('************')
             render.filepath = exr_path
             bpy.ops.render.render(write_still=True)
+            
         render_result["exr"] = parser_exr(exr_path)
         os.remove(exr_path)
     result = ImageWithAnnotation(**render_result)
