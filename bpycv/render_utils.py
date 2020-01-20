@@ -58,7 +58,8 @@ class set_image_render(StatuRecover):
         # self.set_attr(scene.cycles, "samples", 128)
         attrs = dict(file_format="PNG", compression=15)
         self.set_attrs(render.image_settings, attrs)
-        print(render.image_settings)
+        for (obj, attr), value in render.image_settings:
+            print(attr, value)
         # render.image_settings.file_format = 'JPEG'
         # render.image_settings.quality = 100
 
