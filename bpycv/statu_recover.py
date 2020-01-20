@@ -27,9 +27,11 @@ class StatuRecover:
         self.recover_statu()
 
     def recover_statu(self):
+        print('Recover Status called')
         for (obj, attr), value in self.obj_to_old_attr_value[
             ::-1
         ]:  # try avoid TypeError
+            print(obj, attr, value)
             try:
                 setattr(obj, attr, value)
             except TypeError as e:
