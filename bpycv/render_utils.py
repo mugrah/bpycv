@@ -58,8 +58,6 @@ class set_image_render(StatuRecover):
         # self.set_attr(scene.cycles, "samples", 128)
         attrs = dict(file_format="PNG", compression=15)
         self.set_attrs(render.image_settings, attrs)
-        for (obj, attr), value in render:
-            print(obj, attr, value)
         # render.image_settings.file_format = 'JPEG'
         # render.image_settings.quality = 100
 
@@ -74,6 +72,7 @@ def render_data(render_image=True, render_annotation=True):
         with set_image_render(), withattr(render, "filepath", png_path):
             print("Render image using:", render.engine)
             bpy.ops.render.render(write_still=True)
+            render.filepath = png_path
         render_result["image"] = imread(png_path)
         os.remove(png_path)
 
@@ -83,6 +82,7 @@ def render_data(render_image=True, render_annotation=True):
             render, "filepath", exr_path
         ):
             print("Render annotation using:", render.engine)
+            render.filepath = exr_path
             bpy.ops.render.render(write_still=True)
         render_result["exr"] = parser_exr(exr_path)
         os.remove(exr_path)
